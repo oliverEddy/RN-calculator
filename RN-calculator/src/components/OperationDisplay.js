@@ -11,7 +11,7 @@ export default function OperationDisplay({ h, d }) {
   return (
     <>
       <Text style={styles.label}>Current Calculation:</Text>
-      <Text style={styles.value}>{d}</Text>
+      <Text style={styles.currentCalculation}>{d}</Text>
       <View style={styles.accordion}>
         <TouchableOpacity style={styles.accordionHeader}>
           <Text style={styles.headerText}>Past Calculations:</Text>
@@ -34,13 +34,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
   },
-  value: {
-    color: "white",
+  currentCalculation: {
+    color: "black",
     fontSize: 20,
   },
   accordion: {
     marginTop: 10,
-    borderColor: "black", // Set the desired border color
+    borderColor: "black", //  border color
     borderWidth: 1,
     borderRadius: 5,
     overflow: "hidden",
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     padding: 10,
-    backgroundColor: "lightgray", // Set the desired background color
+    backgroundColor: "lightgray", //  background color
   },
   headerText: {
     fontSize: 16,
