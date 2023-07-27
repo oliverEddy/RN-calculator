@@ -1,7 +1,7 @@
 import React from "react";
 import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
 
-export default function ButtonContainer({ onButton, onClear }) {
+export default function ButtonContainer({ onButton, onClear, onDelete }) {
   return (
     <>
       <View style={styles.btnContainer}>
@@ -88,7 +88,7 @@ export default function ButtonContainer({ onButton, onClear }) {
           </View>
         </View>
         <View style={styles.calculatorControls}>
-          <TouchableOpacity style={styles.controlButton}>
+          <TouchableOpacity style={styles.controlButton} onPress={onDelete}>
             <Text>Delete</Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -105,19 +105,19 @@ export default function ButtonContainer({ onButton, onClear }) {
 
 const styles = StyleSheet.create({
   btnContainer: {
-    // Your container styles here
+    //  container styles
   },
   numericBtnContainer: {
-    // Your numeric button container styles here
+    //  numeric button container styles
   },
   buttonGroup: {
-    // Your button group styles here
+    //  button group styles
     flexDirection: "row",
     justifyContent: "space-around",
     marginBottom: 10,
   },
   button: {
-    // Your button styles here
+    //  button styles
     width: 80,
     height: 80,
     borderRadius: 40,
@@ -126,12 +126,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   calculatorControls: {
-    // Your calculator controls styles here
+    //  calculator controls styles
     flexDirection: "row",
     justifyContent: "space-around",
   },
   controlButton: {
-    // Your control button styles here
+    //  control button styles
     width: 120,
     height: 40,
     borderRadius: 20,

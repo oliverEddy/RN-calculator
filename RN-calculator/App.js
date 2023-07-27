@@ -52,6 +52,18 @@ export default function App() {
     clearStates();
   };
 
+  const handleDelete = () => {
+    if (isSecondOperand("") && operator) {
+      setOperator("");
+    } else if (secondOperand) {
+      setSecondOperand((prevValue) => prevValue.slice(0, -1));
+    } else if (operator) {
+      setOperator("");
+    } else if (firstOperand) {
+      setFirstOperand((prevValue) => prevValue.slice(0, -1));
+    }
+  };
+
   useEffect(() => {
     setOperationDisplay(
       `${firstOperand} ${operator} ${secondOperand} = ${result}`
@@ -63,6 +75,7 @@ export default function App() {
       <ButtonContainer
         onButton={buttonClicked}
         onClear={() => setHistory([])}
+        onDelete={handleDelete}
       />
       <OperationDisplay d={operationDisplay} h={history} />
     </View>
