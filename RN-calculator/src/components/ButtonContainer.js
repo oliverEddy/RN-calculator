@@ -86,6 +86,33 @@ export default function ButtonContainer({ onButton, onClear, onDelete }) {
               <Text>=</Text>
             </TouchableOpacity>
           </View>
+          {/* Operator Buttons */}
+          <View style={styles.operatorButtonContainer}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => onButton("+")}
+            >
+              <Text style={styles.buttonText}>+</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => onButton("-")}
+            >
+              <Text style={styles.buttonText}>-</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => onButton("*")}
+            >
+              <Text style={styles.buttonText}>*</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => onButton("/")}
+            >
+              <Text style={styles.buttonText}>/</Text>
+            </TouchableOpacity>
+          </View>
         </View>
         <View style={styles.calculatorControls}>
           <TouchableOpacity style={styles.controlButton} onPress={onDelete}>
@@ -138,5 +165,21 @@ const styles = StyleSheet.create({
     backgroundColor: "orange",
     justifyContent: "center",
     alignItems: "center",
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    marginTop: 20,
+  },
+  numericButtonContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+  },
+  operatorButtonContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: 10,
   },
 });

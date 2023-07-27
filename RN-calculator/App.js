@@ -44,10 +44,29 @@ export default function App() {
   };
 
   const calculateResult = () => {
-    setResult(Number(firstOperand) + Number(secondOperand));
+    let resultValue;
+    switch (operator) {
+      case "+":
+        resultValue = Number(firstOperand) + Number(secondOperand);
+        break;
+      case "-":
+        resultValue = Number(firstOperand) - Number(secondOperand);
+        break;
+      case "*":
+        resultValue = Number(firstOperand) * Number(secondOperand);
+        break;
+      case "/":
+        resultValue = Number(firstOperand) / Number(secondOperand);
+        break;
+      default:
+        resultValue = secondOperand;
+        break;
+    }
+
+    setResult(resultValue.toString());
     setHistory([
       ...history,
-      `${firstOperand} ${operator} ${secondOperand} = ${result}`,
+      `${firstOperand} ${operator} ${secondOperand} = ${resultValue}`,
     ]);
     clearStates();
   };
