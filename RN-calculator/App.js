@@ -12,17 +12,38 @@ export default function App() {
   const [history, setHistory] = useState(["1 + 1 = 2", "2 * 2 = 4"]);
 
   const buttonClicked = (char) => {
-    if (isFirstOperand(char)) {
+    if (
+      char === "." &&
+      (isDecimalInOperand(firstOperand) || isDecimalInOperand(secondOperand))
+    ) {
+      // If the entered character is a decimal point and there is already one in either operand, do nothing.
+      return;
+    }
+
+    if (!firstOperand && isOperator(char)) {
+      // If the first operand is not entered and the character is an operator, do nothing.
+      return;
+    }
+
+    if (char === "=") {
+      if (!firstOperand || !operator || !secondOperand) {
+        // If the user pressed equals without entering the first operand, an operator, and the second operand, do nothing.
+        return;
+      }
+
+      calculateResult();
+      setOperator(""); // Reset the operator to allow the user to continue the operation.
+    } else if (isFirstOperand(char)) {
       setFirstOperand((previousValue) => previousValue + char);
     } else if (isSecondOperand(char)) {
-      if (char === "=") {
-        calculateResult();
-      } else {
-        setSecondOperand((previousValue) => previousValue + char);
-      }
+      setSecondOperand((previousValue) => previousValue + char);
     } else {
       setOperator(char);
     }
+  };
+
+  const isDecimalInOperand = (operand) => {
+    return operand.includes(".");
   };
 
   const isFirstOperand = (char) => {
@@ -59,22 +80,23 @@ export default function App() {
         resultValue = Number(firstOperand) / Number(secondOperand);
         break;
       default:
+        // If no operator is set or invalid operator, set the result to the second operand
         resultValue = secondOperand;
         break;
     }
 
-    setResult(resultValue.toString());
+    setResult(resultValue.toFixed(2)); // Format the result to two decimal places
     setHistory([
       ...history,
-      `${firstOperand} ${operator} ${secondOperand} = ${resultValue}`,
+      `${firstOperand} ${operator} ${secondOperand} = ${resultValue.toFixed(
+        2
+      )}`,
     ]);
     clearStates();
   };
 
   const handleDelete = () => {
-    if (isSecondOperand("") && operator) {
-      setOperator("");
-    } else if (secondOperand) {
+    if (secondOperand) {
       setSecondOperand((prevValue) => prevValue.slice(0, -1));
     } else if (operator) {
       setOperator("");
