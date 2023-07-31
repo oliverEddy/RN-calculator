@@ -87,19 +87,12 @@ export default function App() {
     }
 
     setResult(resultValue.toFixed(2)); // Format the result to two decimal places
-    setHistory([
-      ...history,
-      `${firstOperand} ${operator} ${secondOperand} = ${resultValue.toFixed(
-        2
-      )}`,
-    ]);
+    clearStates();
 
     // Store the full calculation in the separate state
     setFullCalculation(
       `${firstOperand} ${operator} ${secondOperand} = ${resultValue.toFixed(2)}`
     );
-
-    clearStates();
   };
 
   const handleDelete = () => {
