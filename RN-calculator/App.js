@@ -103,14 +103,26 @@ export default function App() {
   };
 
   const handleDelete = () => {
-    // Add the full calculation (including the result) to the calculation history
-    if (fullCalculation) {
-      setHistory([...history, fullCalculation]);
-    }
+    if (result === "") {
+      // If the "=" button has not been pressed, delete the last character in the calculation area.
+      if (secondOperand) {
+        setSecondOperand((prevValue) => prevValue.slice(0, -1));
+      } else if (operator) {
+        setOperator("");
+      } else if (firstOperand) {
+        setFirstOperand((prevValue) => prevValue.slice(0, -1));
+      }
+    } else {
+      // If the "=" button has been pressed, add the full calculation (including the result) to the history.
+      if (fullCalculation) {
+        setHistory([...history, fullCalculation]);
+      }
 
-    setFullCalculation("");
-    setResult("");
-    clearStates();
+      // Clear the states for the next calculation.
+      setFullCalculation("");
+      setResult("");
+      clearStates();
+    }
   };
 
   useEffect(() => {
