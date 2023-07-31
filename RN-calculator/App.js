@@ -10,6 +10,7 @@ export default function App() {
   const [operator, setOperator] = useState("");
   const [result, setResult] = useState("");
   const [history, setHistory] = useState(["1 + 1 = 2", "2 * 2 = 4"]);
+  const [fullCalculation, setFullCalculation] = useState("");
 
   const buttonClicked = (char) => {
     if (
@@ -92,24 +93,32 @@ export default function App() {
         2
       )}`,
     ]);
+
+    // Store the full calculation in the separate state
+    setFullCalculation(
+      `${firstOperand} ${operator} ${secondOperand} = ${resultValue.toFixed(2)}`
+    );
+
     clearStates();
   };
 
   const handleDelete = () => {
-    if (secondOperand) {
-      setSecondOperand((prevValue) => prevValue.slice(0, -1));
-    } else if (operator) {
-      setOperator("");
-    } else if (firstOperand) {
-      setFirstOperand((prevValue) => prevValue.slice(0, -1));
+    // Add the full calculation (including the result) to the calculation history
+    if (fullCalculation) {
+      setHistory([...history, fullCalculation]);
     }
+
+    setFullCalculation("");
+    setResult("");
+    clearStates();
   };
 
   useEffect(() => {
     setOperationDisplay(
-      `${firstOperand} ${operator} ${secondOperand} = ${result}`
+      fullCalculation ||
+        `${firstOperand} ${operator} ${secondOperand} = ${result}`
     );
-  }, [result, firstOperand, secondOperand, operator]);
+  }, [result, firstOperand, secondOperand, operator, fullCalculation]);
 
   return (
     <View style={styles.container}>
