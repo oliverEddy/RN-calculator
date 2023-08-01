@@ -82,6 +82,7 @@ export default function ButtonContainer({ onButton, onClear, onDelete }) {
             <TouchableOpacity
               style={[styles.button, { backgroundColor: "blue" }]}
               onPress={() => onButton("=")}
+              testID="equalsButton" // Add testID prop here
             >
               <Text>=</Text>
             </TouchableOpacity>
