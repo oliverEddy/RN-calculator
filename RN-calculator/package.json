@@ -2,11 +2,18 @@
   "name": "rn-calculator",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
+  "jest": {
+    "preset": "jest-expo",
+    "transform": {
+      "^.+\\.(js|jsx)$": "babel-jest"
+    }
+  },
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "test": "jest"
   },
   "dependencies": {
     "accordion-collapse-react-native": "^1.1.1",
@@ -16,7 +23,13 @@
     "react-native": "0.72.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.22.9",
+    "@babel/preset-env": "^7.22.9",
+    "@babel/preset-react": "^7.22.5",
+    "@testing-library/react-native": "^12.1.3",
+    "babel-jest": "^29.6.2",
+    "jest-expo": "^49.0.0",
+    "react-test-renderer": "^18.2.0"
   },
   "private": true
 }
