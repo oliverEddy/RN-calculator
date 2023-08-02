@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import ButtonContainer from "./src/components/ButtonContainer";
 import OperationDisplay from "./src/components/OperationDisplay";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function App() {
   const [operationDisplay, setOperationDisplay] = useState("");
@@ -9,7 +10,7 @@ export default function App() {
   const [secondOperand, setSecondOperand] = useState("");
   const [operator, setOperator] = useState("");
   const [result, setResult] = useState("");
-  const [history, setHistory] = useState(["1 + 1 = 2", "2 * 2 = 4"]);
+  const [history, setHistory] = useState([]);
   const [fullCalculation, setFullCalculation] = useState("");
 
   const buttonClicked = (char) => {
@@ -86,10 +87,25 @@ export default function App() {
         break;
     }
 
-    setResult(resultValue.toFixed(2)); // Format the result to two decimal places
-    clearStates();
+    // Save the calculation history to local storage
+    const calculationHistory = [
+      ...history,
+      `${firstOperand} ${operator} ${secondOperand} = ${resultValue.toFixed(
+        2
+      )}`,
+    ];
+    AsyncStorage.setItem(
+      "calculations",
+      JSON.stringify(calculationHistory)
+    ).catch((error) => {
+      console.error(
+        "Error saving calculation history to local storage:",
+        error
+      );
+    });
 
-    // Store the full calculation in the separate state
+    setResult(resultValue.toFixed(2));
+    clearStates();
     setFullCalculation(
       `${firstOperand} ${operator} ${secondOperand} = ${resultValue.toFixed(2)}`
     );
@@ -119,6 +135,20 @@ export default function App() {
   };
 
   useEffect(() => {
+    // Get the calculation history from local storage when the app starts
+    AsyncStorage.getItem("calculations")
+      .then((historyData) => {
+        if (historyData) {
+          setHistory(JSON.parse(historyData));
+        }
+      })
+      .catch((error) => {
+        console.error(
+          "Error retrieving calculation history from local storage:",
+          error
+        );
+      });
+
     setOperationDisplay(
       fullCalculation ||
         `${firstOperand} ${operator} ${secondOperand} = ${result}`
@@ -129,7 +159,16 @@ export default function App() {
     <View style={styles.container}>
       <ButtonContainer
         onButton={buttonClicked}
-        onClear={() => setHistory([])}
+        onClear={() => {
+          setHistory([]); // Clear the history state
+          AsyncStorage.removeItem("calculations") // Clear the local storage
+            .catch((error) => {
+              console.error(
+                "Error clearing calculation history from local storage:",
+                error
+              );
+            });
+        }}
         onDelete={handleDelete}
       />
       <OperationDisplay d={operationDisplay} h={history} />
