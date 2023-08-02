@@ -77,3 +77,16 @@ export default function ButtonContainer({ onButton, onClear }) {
     </>
   );
 }
+/*
+Code Review - Missing Functionality for Delete Button:
+The Delete button inside the calculator-controls div is missing the onClick event handler. 
+The button has been added to the UI but no functionality has been provided.
+
+You should add the appropriate onClick event handler to the "Delete" button. 
+
+<Button variant="contained" color="warning" onClick={onDelete}>
+
+remember to pass the onDelete prop to the ButtonContainer along with onButton and onClear:
+
+export default function ButtonContainer({ onButton, onClear, onDelete }) 
+*/
