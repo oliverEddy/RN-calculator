@@ -12,9 +12,9 @@ function App() {
   const [result, setResult] = useState("");
   /*
 Code Review - History State:
-The initial state of the history variable is hard-coded with two strings. 
-This hard-coded approach limits the flexibility and usability of the history feature. 
-It would be better to initialize the history state as an empty array then 
+The initial state of the history variable is hard coded with two strings. 
+This hard coded approach limits the usability of the history feature. 
+It would be better to set the history state as an empty array, then 
 let users add their calculations to the history.
 */
   const [history, setHistory] = useState(["1 + 1 = 2", "2 * 2 = 4"]);
@@ -42,22 +42,21 @@ let users add their calculations to the history.
   const buttonClicked = (char) => {
     /*
     Code Review - Decimal Point's:
-    As is, calculator allows users to add more than one decimal point per operand. 
+    As is, the calculator allows users to add more than one decimal point per operand. 
     This behavior could lead to invalid calculations. 
 
-    To address this issue, you should add checks before adding a decimal point to the first and second operands. 
-    If the operand already contains a decimal point and the user tries to add another one, you should ignore the input
-    and prevent it from being added to the operand.
+    You should add checks before adding a decimal point to the first and second operands. 
+    If the operand already contains a decimal point and the user tries to add another one, you should ignore the input.
 
     if (isFirstOperand(char))
     if (char === "." && firstOperand.includes(".")) 
     return;
     
     Code Review - Multiple Equals Signs:
-    The calculator allows a user to enter multiple equals signs in the calculation area. 
+    The calculator allows a user to enter multiple equals signs. 
     This behavior is not user friendly and could lead to invalid calculations.
 
-    To fix this issue, you should check if the last character in the operationDisplay is already an equals sign. 
+    You should check if the last character in the operationDisplay is an equals sign. 
     If it is, you should ignore any additional equals signs entered by the user.
 
     const lastChar = operationDisplay.slice(-1);
@@ -66,9 +65,9 @@ let users add their calculations to the history.
 
     Code Review - Entering Operator Before First Operand:
     Currently, the calculator allows users to enter an operator before the first operand. 
-    This prevents the user from entering the first operand, which can cause incorrect calculations. 
+    Which then prevents users from entering the first operand, this is not a good user experience. 
   
-    To fix this issue, you should add a check to the buttonClicked function to check that the first operand is entered 
+    You should add a check to the buttonClicked function to check that the first operand is entered 
     before allowing a user to enter an operator. If the first operand is not entered, you should ignore any operator input.
   
     const buttonClicked = (char) => {
@@ -105,30 +104,19 @@ let users add their calculations to the history.
 Code Review - Unclear Purpose of clearStates Function:
 The clearStates function is currently empty, and its purpose is not evident from the code. 
 This could lead to confusion for other developers working on this code. 
-
 You should add a comment above the clearStates function to highlight its purpose. 
-Additionally, you could implement the clearStates function to reset the state values 
-of firstOperand, secondOperand, and operator to their initial state or empty values.
-
-const clearStates = () => {
-setFirstOperand("");
-setSecondOperand("");
-setOperator("");
-};
 */
-  ////////////////////////////////////////////////////////////////////////
+
   const clearStates = () => {};
 
   /*
 Code review - Limited Functionality of calculateResult Function: 
-The functionality of the calculateResult function is very limited. 
-Currently, it only supports the logic to perform addition, which limits the calculator's 
-usefulness as it can only perform this single operation. 
+The functionality of the calculateResult function is limited. 
+It only has the logic to perform addition, which limits the calculator's usefulness.
 
-To improve the calculator's functionality, you should add logic to support subtraction, multiplication, 
-and division to the calculateResult function. You can achieve this by implementing 
-separate cases for each operator (-, *, /) and using a switch statement or if-else 
-conditions to perform the corresponding calculations.
+You should add logic to support subtraction, multiplication, and division to the calculateResult function. 
+To achieve this you could use separate cases for each operator then 
+use a switch statement to perform the corresponding calculations.
 
 switch (operator) {
       case "+":
@@ -143,18 +131,14 @@ switch (operator) {
   };
 
   useEffect(() => {
-    /*Code review -   Result Displayed with Two Decimal Places:
-The result is not displayed with two decimal places. In the useEffect hook, 
-you set the operationDisplay state with the result, but the result is not formatted 
-to display with two decimal places. 
-
-To fix this, you should format the result to two decimal places using the .toFixed(2) 
-method before displaying it in the operationDisplay
+    /*
+    Code review - Result Displayed with Two Decimal Places:
+    The result is not displayed with two decimal places. 
+    To fix this, you should format the result to two decimal places by using the .toFixed(2) 
+    method before displaying it in the operationDisplay
 
     result.toFixed(2),
-
     */
-    ////////////////////////////////////////////////////////////////
     setOperationDisplay(
       `${firstOperand} ${operator} ${secondOperand} = ${result}`
     );
