@@ -11,9 +11,11 @@ function App() {
   const [operator, setOperator] = useState("");
   const [result, setResult] = useState("");
   /*
-Code Review - History State 
-The initial state of the history variable is hard-coded with two strings,
-this hard-coded approach limits the flexibility and usability of the history feature.
+Code Review - History State:
+The initial state of the history variable is hard-coded with two strings. 
+This hard-coded approach limits the flexibility and usability of the history feature. 
+It would be better to initialize the history state as an empty array initially and 
+let users add calculations to the history dynamically.
 */
   const [history, setHistory] = useState(["1 + 1 = 2", "2 * 2 = 4"]);
 
@@ -62,13 +64,14 @@ this hard-coded approach limits the flexibility and usability of the history fea
   const isOperator = (char) => {
     return char === "+" || char === "-" || char === "*" || char === "/";
   };
-  /*Code Review - Unclear Purpose of clearStates Function
-The clearStates function is currently empty, and its purpose is not evident from the code.
+  /*
+Code Review - Unclear Purpose of clearStates Function:
+The clearStates function is currently empty, and its purpose is not evident from the code. 
 This could lead to confusion for other developers working on this code. 
 
-I would recommend you add a comment above the clearStates function to highlight its purpose.
-You could also implement the clearStates function to reset the state values of the firstOperand, secondOperand,
-and operator to their initial state or empty values.
+You should add a comment above the clearStates function to highlight its purpose. 
+Additionally, you could implement the clearStates function to reset the state values 
+of firstOperand, secondOperand, and operator to their initial state or empty values.
 
 const clearStates = () => {
 setFirstOperand("");
@@ -78,22 +81,23 @@ setOperator("");
 .*/
   const clearStates = () => {};
 
-  /*Code review - Limited functionality
-The Functionality of the calculateResult function is very limited.
-The calculateResult function currently only supports the logic to preform addition,
-which limits the calculators usefulness as we can only perform this single operation.
+  /*
+Code review - Limited Functionality of calculateResult Function: 
+The functionality of the calculateResult function is very limited. 
+Currently, it only supports the logic to perform addition, which limits the calculator's 
+usefulness as it can only perform this single operation. 
 
-I would recommend you add logic to support subtraction, multiplication and division to the calculateResult function.
-
-You could achieve this by implementing separate cases for each operator ('-', '*', '/')
-and use a switch statement or if-else conditions to perform the corresponding calculations. 
+To improve the calculator's functionality, you should add logic to support subtraction, multiplication, 
+and division to the calculateResult function. You can achieve this by implementing 
+separate cases for each operator ('-', '*', '/') and using a switch statement or if-else 
+conditions to perform the corresponding calculations.
 
 switch (operator) {
       case "+":
         resultValue = Number(firstOperand) + Number(secondOperand);
         break;
 
-      //continue for each operator
+      continue for each operator
       */
   const calculateResult = () => {
     setResult(Number(firstOperand) + Number(secondOperand));
@@ -101,14 +105,17 @@ switch (operator) {
   };
 
   useEffect(() => {
-    /*Code review: The result is not displayed with two decimal places.
-    The useEffect hook sets the operationDisplay state with the result, 
-    but the result is not formatted to display with two decimal places. 
-    
-    I would recommend you format the result to two decimal places. You could achieve this by using 
-    .toFixed(2) before displaying the result to the operationDisplay.
+    /*Code review -   Result Display with Two Decimal Places:
+The result is not displayed with two decimal places. In the useEffect hook, 
+you set the operationDisplay state with the result, but the result is not formatted 
+to display with two decimal places. 
+
+To fix this, you should format the result to two decimal places using the .toFixed(2) 
+method before displaying it in the operationDisplay
+
     result.toFixed(2),
-      */
+
+    */
     setOperationDisplay(
       `${firstOperand} ${operator} ${secondOperand} = ${result}`
     );
