@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: 80,
-    height: 80,
+    height: 65,
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "black",
