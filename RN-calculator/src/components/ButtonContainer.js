@@ -63,10 +63,10 @@ export default function ButtonContainer({ onButton, onClear, onDelete }) {
             <Text style={styles.buttonText}>.</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.button, { backgroundColor: "#B6636E" }]}
+            style={[styles.button, styles.deleteButton]}
             onPress={onDelete}
           >
-            <Text style={styles.buttonText}>Delete</Text>
+            <Text style={styles.buttonText}>DEL</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => onButton("+")}>
             <Text style={styles.buttonText}>+</Text>
@@ -108,11 +108,14 @@ const styles = StyleSheet.create({
   button: {
     width: 80,
     height: 80,
-    borderRadius: 40,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "black",
     backgroundColor: "#DBD8AE",
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 10,
+    marginHorizontal: 5,
   },
   buttonText: {
     fontSize: 24,
@@ -151,5 +154,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     color: "white",
+  },
+  deleteButton: {
+    backgroundColor: "#B6636E",
   },
 });
