@@ -9,19 +9,19 @@ export default function ButtonContainer({ onButton, onClear, onDelete }) {
           style={[styles.button, styles.clearButton]}
           onPress={onClear}
         >
-          <Text>Clear History</Text>
+          <Text style={styles.clearButtonText}>Clear History</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.numericBtnContainer}>
         <View style={styles.buttonRow}>
           <TouchableOpacity style={styles.button} onPress={() => onButton("7")}>
-            <Text>7</Text>
+            <Text style={styles.buttonText}>7</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => onButton("8")}>
-            <Text>8</Text>
+            <Text style={styles.buttonText}>8</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => onButton("9")}>
-            <Text>9</Text>
+            <Text style={styles.buttonText}>9</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => onButton("/")}>
             <Text style={styles.buttonText}>/</Text>
@@ -29,13 +29,13 @@ export default function ButtonContainer({ onButton, onClear, onDelete }) {
         </View>
         <View style={styles.buttonRow}>
           <TouchableOpacity style={styles.button} onPress={() => onButton("4")}>
-            <Text>4</Text>
+            <Text style={styles.buttonText}>4</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => onButton("5")}>
-            <Text>5</Text>
+            <Text style={styles.buttonText}>5</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => onButton("6")}>
-            <Text>6</Text>
+            <Text style={styles.buttonText}>6</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => onButton("*")}>
             <Text style={styles.buttonText}>*</Text>
@@ -43,13 +43,13 @@ export default function ButtonContainer({ onButton, onClear, onDelete }) {
         </View>
         <View style={styles.buttonRow}>
           <TouchableOpacity style={styles.button} onPress={() => onButton("1")}>
-            <Text>1</Text>
+            <Text style={styles.buttonText}>1</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => onButton("2")}>
-            <Text>2</Text>
+            <Text style={styles.buttonText}>2</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => onButton("3")}>
-            <Text>3</Text>
+            <Text style={styles.buttonText}>3</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => onButton("-")}>
             <Text style={styles.buttonText}>-</Text>
@@ -57,16 +57,16 @@ export default function ButtonContainer({ onButton, onClear, onDelete }) {
         </View>
         <View style={styles.buttonRow}>
           <TouchableOpacity style={styles.button} onPress={() => onButton("0")}>
-            <Text>0</Text>
+            <Text style={styles.buttonText}>0</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => onButton(".")}>
-            <Text>.</Text>
+            <Text style={styles.buttonText}>.</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.button, { backgroundColor: "red" }]}
+            style={[styles.button, { backgroundColor: "#B6636E" }]}
             onPress={onDelete}
           >
-            <Text>Delete</Text>
+            <Text style={styles.buttonText}>Delete</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => onButton("+")}>
             <Text style={styles.buttonText}>+</Text>
@@ -97,11 +97,6 @@ const styles = StyleSheet.create({
   },
   numericBtnContainer: {
     flexDirection: "column",
-    justifyContent: "space-around",
-    marginBottom: 10,
-  },
-  buttonGroup: {
-    flexDirection: "row",
     justifyContent: "space-around",
     marginBottom: 10,
   },
@@ -141,7 +136,7 @@ const styles = StyleSheet.create({
   },
   equalButton: {
     flex: 1,
-    backgroundColor: "blue",
+    backgroundColor: "#BA9D9F",
   },
   clearButtonRow: {
     flexDirection: "row",
@@ -150,6 +145,11 @@ const styles = StyleSheet.create({
   },
   clearButton: {
     flex: 1,
-    backgroundColor: "red",
+    backgroundColor: "#9E2A2B",
+  },
+  clearButtonText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "white",
   },
 });
