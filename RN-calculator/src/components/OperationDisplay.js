@@ -21,11 +21,9 @@ export default function OperationDisplay({ h, d }) {
 
   return (
     <>
-      <Text style={styles.label}>Current Calculation:</Text>
-      <Text style={styles.currentCalculation}>{d}</Text>
       <View style={styles.accordion}>
         <TouchableOpacity onPress={toggleAccordion}>
-          <Collapse>
+          <Collapse isCollapsed={!isAccordionOpen}>
             <CollapseHeader>
               <View style={styles.accordionHeader}>
                 <Text style={styles.headerText}>Past Calculations:</Text>
@@ -43,6 +41,8 @@ export default function OperationDisplay({ h, d }) {
           </Collapse>
         </TouchableOpacity>
       </View>
+      <Text style={styles.label}>Current Calculation:</Text>
+      <Text style={styles.currentCalculation}>{d}</Text>
     </>
   );
 }
