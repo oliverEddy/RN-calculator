@@ -4,6 +4,14 @@ import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
 export default function ButtonContainer({ onButton, onClear, onDelete }) {
   return (
     <View style={styles.btnContainer}>
+      <View style={styles.clearButtonRow}>
+        <TouchableOpacity
+          style={[styles.button, styles.clearButton]}
+          onPress={onClear}
+        >
+          <Text>Clear History</Text>
+        </TouchableOpacity>
+      </View>
       <View style={styles.numericBtnContainer}>
         <View style={styles.buttonRow}>
           <TouchableOpacity style={styles.button} onPress={() => onButton("7")}>
@@ -66,18 +74,13 @@ export default function ButtonContainer({ onButton, onClear, onDelete }) {
         </View>
         <View style={styles.buttonRow}>
           <TouchableOpacity
-            style={[styles.button, { backgroundColor: "blue" }]}
+            style={[styles.button, styles.equalButton]}
             onPress={() => onButton("=")}
             testID="equalsButton"
           >
             <Text style={styles.buttonText}>=</Text>
           </TouchableOpacity>
         </View>
-      </View>
-      <View style={styles.calculatorControls}>
-        <TouchableOpacity style={styles.controlButton} onPress={onClear}>
-          <Text>Clear history</Text>
-        </TouchableOpacity>
       </View>
     </View>
   );
@@ -135,5 +138,18 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 10,
+  },
+  equalButton: {
+    flex: 1,
+    backgroundColor: "blue",
+  },
+  clearButtonRow: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginBottom: 10,
+  },
+  clearButton: {
+    flex: 1,
+    backgroundColor: "red",
   },
 });
