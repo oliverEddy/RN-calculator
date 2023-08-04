@@ -156,7 +156,8 @@ export default function App() {
   }, [result, firstOperand, secondOperand, operator, fullCalculation]);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: "#FAF9F6" }]}>
+      <OperationDisplay h={history} d={operationDisplay} />
       <ButtonContainer
         onButton={buttonClicked}
         onClear={() => {
@@ -171,15 +172,13 @@ export default function App() {
         }}
         onDelete={handleDelete}
       />
-      <OperationDisplay d={operationDisplay} h={history} />
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#FAF9F6",
     alignItems: "center",
     justifyContent: "center",
   },
