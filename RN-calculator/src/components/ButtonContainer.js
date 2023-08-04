@@ -23,7 +23,10 @@ export default function ButtonContainer({ onButton, onClear, onDelete }) {
           <TouchableOpacity style={styles.button} onPress={() => onButton("9")}>
             <Text style={styles.buttonText}>9</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => onButton("/")}>
+          <TouchableOpacity
+            style={[styles.button, styles.operatorButton]}
+            onPress={() => onButton("/")}
+          >
             <Text style={styles.buttonText}>/</Text>
           </TouchableOpacity>
         </View>
@@ -37,7 +40,10 @@ export default function ButtonContainer({ onButton, onClear, onDelete }) {
           <TouchableOpacity style={styles.button} onPress={() => onButton("6")}>
             <Text style={styles.buttonText}>6</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => onButton("*")}>
+          <TouchableOpacity
+            style={[styles.button, styles.operatorButton]}
+            onPress={() => onButton("*")}
+          >
             <Text style={styles.buttonText}>*</Text>
           </TouchableOpacity>
         </View>
@@ -51,7 +57,10 @@ export default function ButtonContainer({ onButton, onClear, onDelete }) {
           <TouchableOpacity style={styles.button} onPress={() => onButton("3")}>
             <Text style={styles.buttonText}>3</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => onButton("-")}>
+          <TouchableOpacity
+            style={[styles.button, styles.operatorButton]}
+            onPress={() => onButton("-")}
+          >
             <Text style={styles.buttonText}>-</Text>
           </TouchableOpacity>
         </View>
@@ -62,13 +71,17 @@ export default function ButtonContainer({ onButton, onClear, onDelete }) {
           <TouchableOpacity style={styles.button} onPress={() => onButton(".")}>
             <Text style={styles.buttonText}>.</Text>
           </TouchableOpacity>
+
           <TouchableOpacity
             style={[styles.button, styles.deleteButton]}
             onPress={onDelete}
           >
             <Text style={styles.buttonText}>DEL</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => onButton("+")}>
+          <TouchableOpacity
+            style={[styles.button, styles.operatorButton]}
+            onPress={() => onButton("+")}
+          >
             <Text style={styles.buttonText}>+</Text>
           </TouchableOpacity>
         </View>
@@ -122,20 +135,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "black",
   },
-  operatorButtonContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    marginLeft: 40,
-    marginTop: 10,
-  },
-  controlButton: {
-    width: 120,
-    height: 40,
-    borderRadius: 20,
+
+  operatorButton: {
     backgroundColor: "#CA907E",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 10,
   },
   equalButton: {
     flex: 1,
