@@ -20,10 +20,10 @@ export default function OperationDisplay({ h, d }) {
   };
 
   return (
-    <>
-      <View style={styles.accordion}>
+    <View style={styles.container}>
+      <View style={styles.calculationHistory}>
         <TouchableOpacity onPress={toggleAccordion}>
-          <Collapse isCollapsed={!isAccordionOpen}>
+          <Collapse>
             <CollapseHeader>
               <View style={styles.accordionHeader}>
                 <Text style={styles.headerText}>Past Calculations:</Text>
@@ -41,13 +41,34 @@ export default function OperationDisplay({ h, d }) {
           </Collapse>
         </TouchableOpacity>
       </View>
-      <Text style={styles.label}>Current Calculation:</Text>
-      <Text style={styles.currentCalculation}>{d}</Text>
-    </>
+
+      <View style={[styles.calculationArea]}>
+        <Text style={[styles.label, { textAlign: "center" }]}>
+          Current Calculation:
+        </Text>
+        <Text style={[styles.currentCalculation, { textAlign: "center" }]}>
+          {d}
+        </Text>
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    marginTop: 20,
+    paddingHorizontal: 20,
+    width: "100%",
+  },
+  calculationArea: {
+    width: "97%",
+    height: 65,
+    borderWidth: 2,
+    borderColor: "#DBD8AE",
+    borderRadius: 10,
+    marginTop: 10,
+  },
   label: {
     color: "white",
     fontSize: 16,
@@ -57,23 +78,27 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 20,
   },
-  accordion: {
-    marginTop: 10,
-    borderColor: "black", // border color
-    borderWidth: 1,
-    borderRadius: 5,
+  calculationHistory: {
+    width: "97%",
+    borderWidth: 2,
+    borderColor: "#DBD8AE",
+    borderRadius: 10,
     overflow: "hidden",
+    backgroundColor: "#BA9D9F",
+    marginBottom: 10,
+    marginTop: 10,
   },
   accordionHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     padding: 10,
-    backgroundColor: "lightgray", // background color
+    backgroundColor: "#CA907E",
   },
   headerText: {
     fontSize: 16,
     fontWeight: "bold",
+    color: "white",
   },
   accordionDetails: {
     maxHeight: 150,
@@ -82,5 +107,6 @@ const styles = StyleSheet.create({
   operationText: {
     fontSize: 14,
     marginBottom: 5,
+    color: "black",
   },
 });
