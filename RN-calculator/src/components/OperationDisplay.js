@@ -57,7 +57,7 @@ export default function OperationDisplay({ h, d }) {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    marginTop: 20,
+    marginTop: 100,
     paddingHorizontal: 20,
     width: "100%",
   },
