@@ -156,7 +156,7 @@ export default function App() {
   }, [result, firstOperand, secondOperand, operator, fullCalculation]);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: "#FAF9F6" }]}>
       <OperationDisplay h={history} d={operationDisplay} />
       <ButtonContainer
         onButton={buttonClicked}
@@ -178,7 +178,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#FAF9F6",
     alignItems: "center",
     justifyContent: "center",
   },

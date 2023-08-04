@@ -64,10 +64,11 @@ const styles = StyleSheet.create({
   calculationArea: {
     width: "97%",
     height: 65,
-    borderWidth: 2,
-    borderColor: "#DBD8AE",
+    borderWidth: 1.5,
+    borderColor: "black",
     borderRadius: 10,
     marginTop: 10,
+    backgroundColor: "#fff",
   },
   label: {
     color: "white",
@@ -80,8 +81,8 @@ const styles = StyleSheet.create({
   },
   calculationHistory: {
     width: "97%",
-    borderWidth: 2,
-    borderColor: "#DBD8AE",
+    borderWidth: 1,
+    borderColor: "black",
     borderRadius: 10,
     overflow: "hidden",
     backgroundColor: "#BA9D9F",
