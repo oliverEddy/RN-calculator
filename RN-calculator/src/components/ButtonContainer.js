@@ -68,8 +68,11 @@ export default function ButtonContainer({ onButton, onClear, onDelete }) {
           <TouchableOpacity style={styles.button} onPress={() => onButton("0")}>
             <Text style={styles.buttonText}>0</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => onButton(".")}>
-            <Text style={styles.buttonText}>.</Text>
+          <TouchableOpacity
+            style={[styles.button, styles.dotButton]}
+            onPress={() => onButton(".")}
+          >
+            <Text style={styles.dotButtonText}>.</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -159,5 +162,13 @@ const styles = StyleSheet.create({
   },
   deleteButton: {
     backgroundColor: "#B6636E",
+  },
+  dotButton: {
+    backgroundColor: "#DBD8AE",
+  },
+  dotButtonText: {
+    fontSize: 48,
+    fontWeight: "bold",
+    color: "black",
   },
 });
