@@ -1,3 +1,8 @@
+import mockAsyncStorage from "./mockAsyncStorage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+jest.mock("@react-native-async-storage/async-storage", () => mockAsyncStorage);
+
 import { render, fireEvent } from "@testing-library/react-native";
 import App from "./App";
 
