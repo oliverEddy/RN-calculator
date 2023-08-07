@@ -1,3 +1,5 @@
+jest.mock("@react-native-async-storage/async-storage", () => mockAsyncStorage);
+
 import mockAsyncStorage from "./mockAsyncStorage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -158,57 +160,32 @@ describe("Calculator", () => {
     expect(getByText("1 =")).toBeDefined();
   });
 
-  const mockLocalStorage = () => {
-    const localStorageMock = (function () {
-      let store = {};
-
-      return {
-        getItem: function (key) {
-          return store[key] || null;
-        },
-        setItem: function (key, value) {
-          store[key] = value.toString();
-        },
-        removeItem: function (key) {
-          delete store[key];
-        },
-        clear: function () {
-          store = {};
-        },
-      };
-    })();
-    Object.defineProperty(window, "localStorage", {
-      value: localStorageMock,
-    });
-  };
-
   test("Clear history button removes past calculations from dropdown and local storage", () => {
-    mockLocalStorage();
-
     const { getByText, queryByText } = render(<App />);
 
     fireEvent.press(getByText("1"));
     fireEvent.press(getByText("+"));
     fireEvent.press(getByText("2"));
     fireEvent.press(getByText("="));
-    fireEvent.press(getByText("Delete"));
+    fireEvent.press(getByText("DEL"));
 
     fireEvent.press(getByText("5"));
     fireEvent.press(getByText("-"));
     fireEvent.press(getByText("3"));
     fireEvent.press(getByText("="));
-    fireEvent.press(getByText("Delete"));
+    fireEvent.press(getByText("DEL"));
 
     fireEvent.press(getByText("Past Calculations:"));
 
     expect(getByText("1 + 2 = 3.00")).toBeDefined();
     expect(getByText("5 - 3 = 2.00")).toBeDefined();
 
-    fireEvent.press(getByText("Clear history"));
+    fireEvent.press(getByText("Clear History"));
 
     expect(queryByText("1 + 2 = 3.00")).toBeNull();
     expect(queryByText("5 - 3 = 2.00")).toBeNull();
 
-    expect(localStorage.getItem("calculations")).toBeNull();
+    // Verify that the "calculations" key is removed from the mockAsyncStorage
+    expect(mockAsyncStorage.data["calculations"]).toBeUndefined();
   });
 });

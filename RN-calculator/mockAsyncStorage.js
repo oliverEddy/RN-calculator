@@ -2,7 +2,9 @@ const mockAsyncStorage = {
   // Initialize an empty data object to simulate local storage
   data: {},
 
-  getItem: jest.fn((key) => Promise.resolve(mockAsyncStorage.data[key])),
+  getItem: jest.fn((key) =>
+    Promise.resolve(mockAsyncStorage.data[key] || null)
+  ),
 
   setItem: jest.fn((key, value) => {
     mockAsyncStorage.data[key] = value;
