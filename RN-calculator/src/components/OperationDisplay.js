@@ -41,12 +41,8 @@ export default function OperationDisplay({ h, d }) {
           </Collapse>
         </TouchableOpacity>
       </View>
-
-      <View style={[styles.calculationArea]}>
-        <Text style={[styles.label, { textAlign: "center" }]}>
-          Current Calculation:
-        </Text>
-        <Text style={[styles.currentCalculation, { textAlign: "center" }]}>
+      <View style={styles.calculationArea}>
+        <Text style={[styles.currentCalculation, styles.centeredText]}>
           {d}
         </Text>
       </View>
@@ -69,15 +65,17 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 10,
     backgroundColor: "#fff",
+    alignItems: "center", // Add this li
   },
-  label: {
-    color: "white",
-    fontSize: 16,
-    fontWeight: "bold",
+  centeredText: {
+    textAlign: "center",
+    padding: 20,
   },
+
   currentCalculation: {
     color: "black",
     fontSize: 20,
+    flex: 1,
   },
   calculationHistory: {
     width: "97%",

@@ -151,7 +151,9 @@ export default function App() {
 
     setOperationDisplay(
       fullCalculation ||
-        `${firstOperand} ${operator} ${secondOperand} = ${result}`
+        `${firstOperand} ${operator} ${secondOperand} ${
+          result ? "=" : ""
+        } ${result}`
     );
   }, [result, firstOperand, secondOperand, operator, fullCalculation]);
 
