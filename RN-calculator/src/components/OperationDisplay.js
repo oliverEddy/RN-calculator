@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 10,
     backgroundColor: "#fff",
-    alignItems: "center", // Add this li
+    alignItems: "center",
   },
   centeredText: {
     textAlign: "center",

@@ -14,12 +14,15 @@ export default function App() {
   const [fullCalculation, setFullCalculation] = useState("");
 
   const buttonClicked = (char) => {
-    if (
-      char === "." &&
-      (isDecimalInOperand(firstOperand) || isDecimalInOperand(secondOperand))
-    ) {
-      // If the entered character is a decimal point and there is already one in either operand, do nothing.
-      return;
+    if (char === ".") {
+      if (isDecimalInOperand(firstOperand) && isFirstOperand(char)) {
+        // If the first operand already has a decimal point and the character is a decimal point, do nothing.
+        return;
+      }
+      if (isDecimalInOperand(secondOperand) && isSecondOperand(char)) {
+        // If the second operand already has a decimal point and the character is a decimal point, do nothing.
+        return;
+      }
     }
 
     if (!firstOperand && isOperator(char)) {
@@ -82,7 +85,6 @@ export default function App() {
         resultValue = Number(firstOperand) / Number(secondOperand);
         break;
       default:
-        // If no operator is set or invalid operator, set the result to the second operand
         resultValue = secondOperand;
         break;
     }
@@ -158,7 +160,7 @@ export default function App() {
   }, [result, firstOperand, secondOperand, operator, fullCalculation]);
 
   return (
-    <View style={[styles.container, { backgroundColor: "#FAF9F6" }]}>
+    <View style={[styles.container]}>
       <OperationDisplay h={history} d={operationDisplay} />
       <ButtonContainer
         onButton={buttonClicked}

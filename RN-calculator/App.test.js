@@ -100,7 +100,7 @@ describe("Calculator", () => {
     fireEvent.press(getByText("3"));
 
     await waitFor(() => {
-      expect(getByText("1.23 =")).toBeDefined();
+      expect(getByText("1.23")).toBeDefined();
     });
   });
 
@@ -142,25 +142,25 @@ describe("Calculator", () => {
     fireEvent.press(getByText("2"));
 
     await waitFor(() => {
-      expect(getByText("1 + 2 =")).toBeDefined();
+      expect(getByText("1 + 2")).toBeDefined();
     });
 
     fireEvent.press(getByText("-"));
 
     await waitFor(() => {
-      expect(getByText("1 - 2 =")).toBeDefined();
+      expect(getByText("1 - 2")).toBeDefined();
     });
 
     fireEvent.press(getByText("*"));
 
     await waitFor(() => {
-      expect(getByText("1 * 2 =")).toBeDefined();
+      expect(getByText("1 * 2")).toBeDefined();
     });
 
     fireEvent.press(getByText("/"));
 
     await waitFor(() => {
-      expect(getByText("1 / 2 =")).toBeDefined();
+      expect(getByText("1 / 2")).toBeDefined();
     });
   });
 
@@ -173,7 +173,7 @@ describe("Calculator", () => {
     fireEvent.press(getByText("="));
 
     await waitFor(() => {
-      expect(getByText("1 + =")).toBeDefined();
+      expect(getByText("1 +")).toBeDefined();
     });
   });
 
@@ -185,9 +185,23 @@ describe("Calculator", () => {
     fireEvent.press(getByText("*"));
     fireEvent.press(getByText("/"));
     fireEvent.press(getByText("1"));
+    fireEvent.press(getByText("2"));
 
     await waitFor(() => {
-      expect(getByText("1 =")).toBeDefined();
+      expect(getByText("12")).toBeDefined();
+    });
+  });
+  test("User should not be able to enter = before this first and second operands and operator have been entered", async () => {
+    const { getByText } = render(<App />);
+
+    fireEvent.press(getByText("="));
+    fireEvent.press(getByText("="));
+    fireEvent.press(getByText("1"));
+    fireEvent.press(getByText("+"));
+    fireEvent.press(getByText("2"));
+
+    await waitFor(() => {
+      expect(getByText("1 + 2")).toBeDefined();
     });
   });
 
