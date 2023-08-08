@@ -79,11 +79,11 @@ const styles = StyleSheet.create({
   },
   calculationHistory: {
     width: "97%",
-    borderWidth: 1,
+    borderWidth: 1.5,
     borderColor: "black",
     borderRadius: 10,
     overflow: "hidden",
-    backgroundColor: "#BA9D9F",
+    backgroundColor: "#FAF9F6",
     marginBottom: 10,
     marginTop: 10,
   },
