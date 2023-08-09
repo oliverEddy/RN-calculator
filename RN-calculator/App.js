@@ -159,21 +159,24 @@ export default function App() {
     );
   }, [result, firstOperand, secondOperand, operator, fullCalculation]);
 
+  const handleClearHistory = async () => {
+    try {
+      setHistory([]); // Clear the history state
+      await AsyncStorage.removeItem("calculations"); // Clear the local storage
+    } catch (error) {
+      console.error(
+        "Error clearing calculation history from local storage:",
+        error
+      );
+    }
+  };
+
   return (
     <View style={[styles.container]}>
       <OperationDisplay History={history} Display={operationDisplay} />
       <ButtonContainer
         onButton={buttonClicked}
-        onClear={() => {
-          setHistory([]); // Clear the history state
-          AsyncStorage.removeItem("calculations") // Clear the local storage
-            .catch((error) => {
-              console.error(
-                "Error clearing calculation history from local storage:",
-                error
-              );
-            });
-        }}
+        onClear={handleClearHistory} // Use the new function here
         onDelete={handleDelete}
       />
     </View>
