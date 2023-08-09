@@ -161,7 +161,7 @@ export default function App() {
 
   return (
     <View style={[styles.container]}>
-      <OperationDisplay h={history} d={operationDisplay} />
+      <OperationDisplay History={history} Display={operationDisplay} />
       <ButtonContainer
         onButton={buttonClicked}
         onClear={() => {

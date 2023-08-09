@@ -12,7 +12,7 @@ import {
   CollapseBody,
 } from "accordion-collapse-react-native";
 
-export default function OperationDisplay({ h, d }) {
+export default function OperationDisplay({ History, Display }) {
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
 
   const toggleAccordion = () => {
@@ -31,7 +31,7 @@ export default function OperationDisplay({ h, d }) {
             </CollapseHeader>
             <CollapseBody>
               <ScrollView style={styles.accordionDetails}>
-                {h?.map((operation, index) => (
+                {History?.map((operation, index) => (
                   <Text key={index} style={styles.operationText}>
                     {operation}
                   </Text>
@@ -43,7 +43,7 @@ export default function OperationDisplay({ h, d }) {
       </View>
       <View style={styles.calculationArea}>
         <Text style={[styles.currentCalculation, styles.centeredText]}>
-          {d}
+          {Display}
         </Text>
       </View>
     </View>
