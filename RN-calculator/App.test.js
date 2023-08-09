@@ -103,6 +103,26 @@ describe("Calculator", () => {
       expect(getByText("1.23")).toBeDefined();
     });
   });
+  test("Ensures each operand can have one decimal point", async () => {
+    const { getByText } = render(<App />);
+
+    fireEvent.press(getByText("1"));
+    fireEvent.press(getByText("."));
+    fireEvent.press(getByText("2"));
+    fireEvent.press(getByText("."));
+    fireEvent.press(getByText("3"));
+    fireEvent.press(getByText("+"));
+    fireEvent.press(getByText("1"));
+    fireEvent.press(getByText("."));
+    fireEvent.press(getByText("2"));
+    fireEvent.press(getByText("."));
+    fireEvent.press(getByText("3"));
+    fireEvent.press(getByText("="));
+
+    await waitFor(() => {
+      expect(getByText("1.23 + 1.23 = 2.46")).toBeDefined();
+    });
+  });
 
   test("Calculator can display negative numbers", async () => {
     const { getByText } = render(<App />);
@@ -199,9 +219,11 @@ describe("Calculator", () => {
     fireEvent.press(getByText("1"));
     fireEvent.press(getByText("+"));
     fireEvent.press(getByText("2"));
+    fireEvent.press(getByText("="));
+    fireEvent.press(getByText("3"));
 
     await waitFor(() => {
-      expect(getByText("1 + 2")).toBeDefined();
+      expect(getByText("1 + 2 = 3.00")).toBeDefined();
     });
   });
 
