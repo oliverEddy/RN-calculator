@@ -137,7 +137,6 @@ export default function App() {
   };
 
   useEffect(() => {
-    // Get the calculation history from local storage when the app starts
     AsyncStorage.getItem("calculations")
       .then((historyData) => {
         if (historyData) {
@@ -150,7 +149,9 @@ export default function App() {
           error
         );
       });
+  }, []);
 
+  useEffect(() => {
     setOperationDisplay(
       fullCalculation ||
         `${firstOperand} ${operator} ${secondOperand} ${
@@ -158,7 +159,6 @@ export default function App() {
         } ${result}`
     );
   }, [result, firstOperand, secondOperand, operator, fullCalculation]);
-
   const handleClearHistory = async () => {
     try {
       setHistory([]); // Clear the history state
@@ -176,7 +176,7 @@ export default function App() {
       <OperationDisplay History={history} Display={operationDisplay} />
       <ButtonContainer
         onButton={buttonClicked}
-        onClear={handleClearHistory} // Use the new function here
+        onClear={handleClearHistory}
         onDelete={handleDelete}
       />
     </View>
